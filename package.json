@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "start": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
     "@fontsource/roboto": "5.2.7",
     "@mdi/font": "7.4.47",
+    "axios": "^1.13.2",
     "vue": "^3.5.21",
     "vue-router": "^4.5.1",
     "vuetify": "^3.10.1"
@@ -20,11 +22,25 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "eslint": "^9.35.0",
     "eslint-config-vuetify": "^4.2.0",
+    "json-server": "^1.0.0-beta.3",
     "sass-embedded": "^1.92.1",
     "unplugin-fonts": "^1.4.0",
     "unplugin-vue-components": "^29.0.0",
     "unplugin-vue-router": "^0.15.0",
     "vite": "^7.1.5",
     "vite-plugin-vuetify": "^2.1.2"
-  }
+  },
+  "description": "This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguel825426-wq/school.proyecto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miguel825426-wq/school.proyecto/issues"
+  },
+  "homepage": "https://github.com/miguel825426-wq/school.proyecto#readme"
 }

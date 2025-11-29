@@ -22,82 +22,96 @@
                </p>
               </v-card>
             </v-col>
-            <v-col cols="7" class="fondo">
-                <v-card
-                    class="mx-auto pa-12 pb-8"
-                    elevation="8"
-                    rounded="lg"
-                    >
-                    <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+<v-col cols="7" class="fondo">
+    <v-card
+        class="mx-auto pa-12 pb-8"
+        elevation="8"
+        rounded="lg"
+        >
+        
+        <v-alert v-if="errorMessage" type="error" class="mb-4">
+            {{ errorMessage }}
+        </v-alert>
 
-                    <v-text-field
-                        density="compact"
-                        placeholder="Email address"
-                        prepend-inner-icon="mdi-email-outline"
-                        variant="outlined"
-                    ></v-text-field>
+        <v-form @submit.prevent="handleLogin">
+            <div class="text-subtitle-1 text-medium-emphasis">Usuario</div>
 
-                    <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-                        Password
+            <v-text-field
+                v-model="username" 
+                density="compact"
+                placeholder="Nombre de Usuario"
+                prepend-inner-icon="mdi-account-outline"
+                variant="outlined"
+                required
+            ></v-text-field>
 
-                        <a
-                        class="text-caption text-decoration-none text-blue"
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >
-                        Forgot login password?</a>
-                    </div>
+            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+                Contraseña
+            </div>
 
-                    <v-text-field
-                        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="visible ? 'text' : 'password'"
-                        density="compact"
-                        placeholder="Enter your password"
-                        prepend-inner-icon="mdi-lock-outline"
-                        variant="outlined"
-                        @click:append-inner="visible = !visible"
-                    ></v-text-field>
+            <v-text-field
+                v-model="password"
+                type="password"
+                density="compact"
+                placeholder="Ingresa tu contraseña"
+                prepend-inner-icon="mdi-lock-outline"
+                variant="outlined"
+                required
+            ></v-text-field>
 
+            <v-btn
+                class="mb-8"
+                color="blue"
+                size="large"
+                variant="tonal"
+                block
+                type="submit" >
+                Ingresar
+            </v-btn>
+        </v-form>
 
-
-                    <v-btn
-                        class="mb-8"
-                        color="blue"
-                        size="large"
-                        variant="tonal"
-                        block
-                        @click="login()"
-                    >
-                        Log In
-                    </v-btn>
-
-                    <v-card-text class="text-center">
-                        <a
-                        class="text-blue text-decoration-none"
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >
-                        Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
-                        </a>
-                    </v-card-text>
-                    </v-card>
-
-            </v-col>
+        <v-card-text class="text-center">
+            <a
+            class="text-blue text-decoration-none"
+            href="#"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            Regístrate ahora <v-icon icon="mdi-chevron-right"></v-icon>
+            </a>
+        </v-card-text>
+    </v-card>
+</v-col>
         </v-row>
     </div>
 </template>
 <script setup>
+import { ref } from 'vue'
+import authService from '@/services/authservice'
 import { useRouter } from 'vue-router'
 
+const username = ref('')
+const password = ref('')
+const errorMessage = ref('')
 const router = useRouter()
 
+
   const login = () =>{
-    
+
    router.push('dashboard')
    
   }
+// En LoginApp.vue
+const handleLogin = async () => {
+  errorMessage.value = '' 
+  const result = await authService.login(username.value, password.value)
+
+  if (result.success) {
+    router.push({ name: 'dashboard' }) // Redirige a Dashboard
+  } else {
+    errorMessage.value = result.message 
+}
+}
 </script>
 <style scoped>
    .fondo{
@@ -109,3 +123,5 @@ const router = useRouter()
    }
 
 </style>
+
+

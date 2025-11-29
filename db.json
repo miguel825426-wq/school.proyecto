@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "1234",
+      "email": "admin@gmail.com",
+      "nombre": "admin",
+      "rol": "admin"
+    },
+    {
+      "id": "5db4",
+      "username": "Miguel",
+      "password": "Rivas26",
+      "email": "miguel825426@gmail.com",
+      "nombre": "Miguel Eduardo Rivas Rojas",
+      "rol": "estudiante"
+    },
+    {
+      "id": "89fa",
+      "username": "Juan",
+      "password": "juan",
+      "email": "juanlopez@gmail.com",
+      "nombre": "Juan López Solano",
+      "rol": "estudiante"
+    }
+  ]
+}

@@ -16,6 +16,8 @@ import { createApp } from 'vue'
 // Styles
 import 'unfonts.css'
 
+
+
 const app = createApp(App)
 
 registerPlugins(app)

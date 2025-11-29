@@ -5,6 +5,9 @@ import Registro from '@/pages/dashboard/registro.vue'
 import Matricula from '@/pages/dashboard/matricula.vue'
 
 
+
+// Código CORREGIDO para el array 'routes'
+
 const routes = [
   {
     path: '/',
@@ -12,28 +15,40 @@ const routes = [
     component: Home,
     meta: { title: 'Inicio' }
   },
+  
+  // ¡COMIENZA LA SUSTITUCIÓN AQUÍ!
   {
     path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
-     children: [
-
-      { path: '', 
-        component: Registro 
-      },
-            { path: 'registro', 
-        component: Registro 
+    // Eliminamos el 'name' de la ruta padre
+    component: Dashboard, // <--- Tu componente principal (Layout)
+    children: [
+      // 1. RUTA HIJA POR DEFECTO: Movemos el nombre 'dashboard' aquí y se lo asignamos a 'Registro'.
+      { 
+        path: '', 
+        name: 'dashboard', // <-- Nombre movido a la ruta hija
+        component: Registro, // <--- Tu componente por defecto es Registro
+        meta: { title: 'Gestión de Usuarios' }
       },
       
-      { path: 'matricula', 
-        component: Matricula
-      },         // /productos
-     
+      // 2. RUTA HIJA DE REGISTRO: Debe tener un nombre diferente o se puede eliminar si es redundante.
+      { 
+        path: 'registro', 
+        name: 'registro', // Añadimos un nombre
+        component: Registro,
+        meta: { title: 'Gestión de Usuarios' }
+      },
+      
+      // 3. RUTA HIJA DE MATRICULA
+      { 
+        path: 'matricula', 
+        name: 'matricula', // Añadimos un nombre
+        component: Matricula,
+        meta: { title: 'Gestión de Matrículas' }
+      }
     ]
-   
   },
- 
-]
+  // ... si tienes más rutas, irían después de este objeto.
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
